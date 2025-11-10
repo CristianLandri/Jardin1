@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canciones para Docentes</title>
+  <link rel="stylesheet" href="/Jardin/Static/bootstrap-5.3.7-dist/bootstrap-5.3.7-dist/css/bootstrap.min.css">
+  <style>
+    .video-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: .6rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      background: #000;
+    }
+    .video-card video {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+    @media (min-width: 768px) {
+      .video-card video { height: 180px; }
+    }
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: .8rem;
+      background: linear-gradient(0deg, rgba(0,0,0,0.5), transparent 50%);
+      color: #fff;
+    }
+    .video-title { font-weight: 700; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+    .btn-small { padding: .35rem .6rem; font-size: .85rem; }
+  </style>
+</head>
+<body class="bg-light">
+
+  <nav class="navbar navbar-expand-lg navbar-success bg-success text-white mb-4">
+    <div class="container">
+      <a class="navbar-brand text-white" href="#">Jardín - Canciones</a>
+      <div class="d-flex ms-auto align-items-center">
+        <div class="me-3 text-white">Docente: <strong id="docenteNombre">---</strong></div>
+        <button id="btnSalir" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="mb-3">
+      <h2 class="h4">Canciones🎶</h2>
+      <p class="text-muted">Selecciona un video.</p>
+    </header>
+
+    <div class="row g-3">
+      
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="video-card">
+          <video muted autoplay loop playsinline preload="metadata" poster="/Jardin/Static/img/memoria.jpg">
+            <source src="../videos/La Vaca Lola - Canciones de La Granja de Zenón 2.mp4" type="video/mp4">
+          </video>
+          <div class="video-overlay w-100">
+            <div class="w-100 d-flex justify-content-between align-items-end">
+              <div class="video-title">La Vaca Lola</div>
+              <div>
+                <button class="btn btn-sm btn-primary btn-small play-btn" data-src="../videos/La Vaca Lola - Canciones de La Granja de Zenón 2.mp4">Reproducir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="video-card">
+          <video muted autoplay loop playsinline preload="metadata" poster="/Jardin/Static/img/memoria.jpg">
+            <source src="../videos/Los Pollitos Dicen ♫ Canciones Infantiles ♫ Plim Plim.mp4" type="video/mp4">
+          </video>
+          <div class="video-overlay w-100">
+            <div class="w-100 d-flex justify-content-between align-items-end">
+              <div class="video-title">Los Pollitos Dicen</div>
+              <div>
+                <button class="btn btn-sm btn-primary btn-small play-btn" data-src="../videos/Los Pollitos Dicen ♫ Canciones Infantiles ♫ Plim Plim.mp4">Reproducir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="video-card">
+          <video muted autoplay loop playsinline preload="metadata" poster="/Jardin/Static/img/memoria.jpg">
+            <source src="../videos/El Sapo Pepe - Las Canciones de la Granja de Zenón 2.mp4" type="video/mp4">
+          </video>
+          <div class="video-overlay w-100">
+            <div class="w-100 d-flex justify-content-between align-items-end">
+              <div class="video-title">El Sapo Pepe</div>
+              <div>
+                <button class="btn btn-sm btn-primary btn-small play-btn" data-src="../videos/El Sapo Pepe - Las Canciones de la Granja de Zenón 2.mp4">Reproducir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </main>
+
+  <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark">
+        <div class="modal-body p-0 position-relative">
+          <button type="button" class="btn-close position-absolute top-2 end-2 m-3" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          <video id="modalVideo" controls style="width:100%; height:100%; background:#000" playsinline></video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/Jardin/Static/bootstrap-5.3.7-dist/bootstrap-5.3.7-dist/js/bootstrap.bundle.min.js"></script>
+<script src="Js/canciones.js"></script>
+</body>
+</html>

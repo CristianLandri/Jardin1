@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Docentes</title>
+  <link rel="stylesheet" href="/Jardin/Static/bootstrap-5.3.7-dist/bootstrap-5.3.7-dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+      min-height: 100vh;
+    }
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .form-control {
+      border-radius: 10px;
+      padding: 0.75rem;
+      border: 2px solid #e9ecef;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: #28a745;
+      box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+    .input-group-text {
+      border-radius: 10px;
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+    }
+    .btn {
+      border-radius: 10px;
+      padding: 0.75rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    @media (max-width: 768px) {
+      .card {
+        margin: 1rem;
+        padding: 1.5rem !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-5">
+          <div class="card p-4">
+            <h2 class="text-center mb-4">Panel Docente</h2>
+
+          
+          <form id="loginDocenteForm">
+            <div class="mb-3">
+              <label for="usuario" class="form-label">Usuario</label>
+              <input type="text" class="form-control" id="usuario" required autocomplete="username">
+            </div>
+            <div class="mb-3">
+              <label for="contrasena" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="contrasena" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-success w-100">Ingresar</button>
+          </form>
+       
+    </div>
+  </div>
+
+      
+<script src="Js/login_docentes.js"></script>
+
+
+</body>
+</html>

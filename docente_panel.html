@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Docente</title>
+  <link rel="stylesheet" href="/Jardin/Static/bootstrap-5.3.7-dist/bootstrap-5.3.7-dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root { 
+      --sidebar-width: 280px;
+      --primary-color: #198754;
+      --primary-dark: #157347;
+      --text-light: #f8f9fa;
+      --border-radius: 15px;
+      --box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    #sidebar {
+      display: none;
+      background: #ffffff;
+      color: #333;
+      padding: 2rem 1.5rem;
+      box-shadow: var(--box-shadow);
+      border-right: 1px solid rgba(0,0,0,0.08);
+    }
+
+    #sidebar h4 {
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    #sidebar a {
+      color: #666;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: var(--border-radius);
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    #sidebar a:hover, #sidebar a.active {
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      transform: translateX(5px);
+    }
+
+    main {
+      margin-left: 0;
+      padding: 2rem;
+      transition: margin-left 0.3s ease;
+    }
+
+    @media (min-width: 992px) {
+      #sidebar {
+        display: block;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: var(--sidebar-width);
+      }
+      main {
+        margin-left: var(--sidebar-width);
+        padding: 2rem 3rem;
+      }
+    }
+
+    .table {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      border: none;
+    }
+
+    .table th {
+      background: var(--primary-color);
+      color: var(--text-light);
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      padding: 1.2rem 1rem;
+      border: none;
+    }
+
+    .table td {
+      padding: 1.2rem 1rem;
+      vertical-align: middle;
+      border-color: rgba(0,0,0,0.05);
+    }
+
+    #tablaPuntosMobile {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 576px) {
+      #tablaPuntosMobile {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    #tablaPuntosMobile .card {
+      border-radius: var(--border-radius);
+      border: none;
+      box-shadow: var(--box-shadow);
+      transition: all 0.3s ease;
+    }
+
+    #tablaPuntosMobile .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    #tablaPuntosMobile .card-body {
+      padding: 1.5rem;
+    }
+
+    .offcanvas {
+      z-index: 1045;
+      border: none;
+    }
+
+    .offcanvas-header {
+      padding: 1.5rem;
+    }
+
+    .btn-success {
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      padding: 0.5rem 1.25rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn-success:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(25,135,84,0.2);
+    }
+
+    .shadow-sm {
+      box-shadow: var(--box-shadow) !important;
+    }
+
+    .rounded {
+      border-radius: var(--border-radius) !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      
+      <div class="col-12 d-md-none">
+        <div class="px-3 py-3 mb-3 d-flex justify-content-between align-items-center bg-white shadow-sm rounded">
+          <div class="d-flex align-items-center">
+            <span class="me-2">👋</span>
+            <h5 class="mb-0">Panel del Docente</h5>
+          </div>
+          <button class="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+            <span>☰</span>
+          </button>
+        </div>
+      </div>
+
+      
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+        <div class="offcanvas-header bg-success text-white">
+          <div class="d-flex align-items-center">
+            <span class="me-2" style="font-size: 1.5rem;">👨‍🏫</span>
+            <h5 class="offcanvas-title mb-0" id="offcanvasSidebarLabel">Panel del Docente</h5>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body bg-white">
+          <div class="text-center mb-4">
+            <p class="fw-bold text-success mb-0" id="nombreDocenteOff"></p>
+          </div>
+          <div class="list-group list-group-flush">
+            <a href="canciones.html" class="list-group-item list-group-item-action border-0 mb-2">
+              <span class="me-2">🎵</span>
+              <span>Canciones</span>
+            </a>
+            <a href="#" id="cerrarSesionOff" class="list-group-item list-group-item-action border-0 text-danger">
+              <span class="me-2">🚪</span>
+              <span>Cerrar sesión</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      
+      <nav id="sidebar" class="col-md-3 col-lg-2 d-none d-md-block sidebar">
+        <div class="text-center mb-4">
+          <div class="mb-3">
+            <span style="font-size: 2.5rem;">👨‍🏫</span>
+          </div>
+          <h4 class="mb-2">Panel del Docente</h4>
+          <p class="fw-bold mb-0" id="nombreDocente"></p>
+        </div>
+        <hr class="border-light opacity-25">
+        <div class="nav flex-column">
+          <a href="canciones.html" class="mb-2">
+            <span class="me-2">🎵</span>
+            <span>Canciones</span>
+          </a>
+          <a href="#" id="cerrarSesion" class="text-danger">
+            <span class="me-2">🚪</span>
+            <span>Cerrar sesión</span>
+          </a>
+        </div>
+      </nav>
+
+      
+      <main class="col-12 col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+        <div class="container-fluid">
+          <h2 class="mb-4 text-success text-center">Tabla de puntos de los alumnos</h2>
+
+          <div class="table-responsive d-none d-md-block">
+            <table id="tablaPuntos" class="table table-striped table-bordered text-center align-middle">
+              <thead>
+                <tr>
+                  <th>Nombre del alumno</th>
+                  <th>Puntos</th>
+                  <th>Última actualización</th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="4">Cargando datos...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          
+          <div id="tablaPuntosMobile" class="d-block d-md-none">
+            
+            <p class="text-center text-muted">Cargando datos...</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/Jardin/Static/bootstrap-5.3.7-dist/bootstrap-5.3.7-dist/js/bootstrap.bundle.min.js"></script>
+
+  
+<script src="Js/docente_panel.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/Jardin/Static/bootstrap-5.3.7-dist/bootstrap-5.3.7-dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+
+  <div class="card shadow p-4" style="max-width: 400px; width: 100%;">
+    <h3 class="text-center mb-3">Ingresar</h3>
+    <form id="loginForm">
+      <div class="mb-3">
+        <label for="usuario" class="form-label">Usuario</label>
+        <input type="text" class="form-control" id="usuario" placeholder="Escribe tu nombre" required>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Entrar</button>
+
+      <div class="text-center mt-3">
+        <button type="button" class="btn btn-outline-success" onclick="window.location.href='login_docentes.html'">
+          Docentes
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const nombre = document.getElementById('usuario').value;
+
+  try {
+    const resp = await fetch('../Essencial/Excepcional/login.php', { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: new URLSearchParams({ nombre })
+    });
+
+    if (!resp.ok) throw new Error("Error de conexión con el servidor");
+
+    const data = await resp.json();
+
+    if (data.error) {
+      alert(data.error);
+    } else {
+      localStorage.setItem('usuario', data.nombre);
+      window.location.href = 'principal.html';
+    }
+  } catch (err) {
+    alert("Error de conexión con el servidor");
+    console.error(err);
+  }
+});
+</script>
+
+
+</body>
+</html>
